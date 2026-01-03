@@ -26,25 +26,15 @@ const App = () => {
 
     try {
       setIsTyping(true);
-      const response = await fetch(
-        "https://api.groq.com/openai/v1/chat/completions",
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${import.meta.env.VITE_GROQ_API_KEY}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            messages: [
-              {
-                role: "user",
-                content: userMessage,
-              },
-            ],
-            model: "llama-3.3-70b-versatile",
-          }),
-        }
-      );
+      const response = await fetch("/.netlify/functions/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: userMessage,
+        }),
+      });
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
