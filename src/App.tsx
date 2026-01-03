@@ -1,6 +1,7 @@
 import { ArrowUp, Sparkles } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { useTypingEffect } from "./hooks/useTypingEffect";
+import { isMobile } from "./utils";
 
 interface Message {
   id: number;
@@ -93,7 +94,7 @@ const App = () => {
     <div className="bg-[#0a0a0a] h-screen text-white flex flex-col">
       <div className="flex flex-col justify-between items-center h-full py-4 w-full max-w-3xl mx-auto p-4">
         {messages.length === 0 ? (
-          <div className="mt-30 w-full px-20">
+          <div className={`w-full ${isMobile() ? "mt-10" : "mt-30 px-20"}`}>
             <h1 className="font-semibold text-xl md:text-2xl">Hello there!</h1>
             <p className="text-xl text-zinc-500 md:text-2xl">
               How can I help you today?
