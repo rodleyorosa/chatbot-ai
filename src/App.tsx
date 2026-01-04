@@ -1,7 +1,7 @@
 import { ArrowUp, ChartNoAxesGantt, Sparkles } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTypingEffect } from "./hooks/useTypingEffect";
-import { isMobile } from "./utils";
+import { formatTextWithBold, isMobile } from "./utils";
 
 interface Message {
   id: number;
@@ -128,8 +128,8 @@ const App = () => {
                     </div>
                     <p className="w-fit rounded-2xl whitespace-pre-wrap">
                       {index === messages.length - 1 && isTyping
-                        ? textEffect
-                        : text}
+                        ? formatTextWithBold(textEffect)
+                        : formatTextWithBold(text)}
                     </p>
                   </div>
                 )}
