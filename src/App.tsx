@@ -1,5 +1,5 @@
 import { ArrowUp, ChartNoAxesGantt, Sparkles } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTypingEffect } from "./hooks/useTypingEffect";
 import { isMobile } from "./utils";
 
@@ -23,6 +23,13 @@ const App = () => {
     typingBotMsgId
   );
   const subtitle = useTypingEffect("How can I help you today?", 50, true);
+  const lastMessageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (lastMessageRef.current) {
+      lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages, textEffect]);
 
   const fetchData = useCallback(async () => {
     if (!userMessage) return;
@@ -106,7 +113,7 @@ const App = () => {
         ) : (
           <div className="flex flex-col w-full gap-4 flex-1 overflow-y-auto scrollbar-hide py-4 min-h-0">
             {messages.map(({ id, role, text }, index) => (
-              <div key={id} className="flex flex-col">
+              <div key={id} className="flex flex-col" ref={lastMessageRef}>
                 {role === "user" && (
                   <div className="flex justify-end">
                     <p className="bg-blue-600 w-fit rounded-2xl px-3 py-2">
