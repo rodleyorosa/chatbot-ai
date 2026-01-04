@@ -94,19 +94,19 @@ const App = () => {
 
   return (
     <div className="bg-[#0a0a0a] h-dvh text-white flex flex-col">
-      <div className="border border-zinc-700 w-fit rounded-md p-2 m-2 cursor-pointer">
+      <div className="border border-zinc-700 w-fit rounded-md p-2 m-2 cursor-pointer flex-shrink-0">
         <ChartNoAxesGantt className="w-4 h-4" />
       </div>
-      <div className="flex flex-col justify-between items-center h-full py-4 w-full max-w-3xl mx-auto p-4">
+      <div className="flex flex-col justify-between w-full max-w-3xl mx-auto px-4 pb-4 gap-4 flex-1 min-h-0">
         {messages.length === 0 ? (
           <div className={`w-full ${isMobile() ? "mt-10" : "mt-30 px-20"}`}>
             <h1 className="font-semibold text-xl md:text-2xl">Hello there!</h1>
             <p className="text-xl text-zinc-500 md:text-2xl">{subtitle}</p>
           </div>
         ) : (
-          <div className="flex flex-col w-full gap-4 h-full overflow-y-auto scrollbar-hide py-4">
+          <div className="flex flex-col w-full gap-4 flex-1 overflow-y-auto scrollbar-hide py-4 min-h-0">
             {messages.map(({ id, role, text }, index) => (
-              <div key={id} className="flex flex-col w-full gap-4">
+              <div key={id} className="flex flex-col">
                 {role === "user" && (
                   <div className="flex justify-end">
                     <p className="bg-blue-600 w-fit rounded-2xl px-3 py-2">
@@ -130,7 +130,7 @@ const App = () => {
             ))}
           </div>
         )}
-        <div className="w-full">
+        <div className="w-full flex-shrink-0">
           <div className="relative inline-block w-full">
             <input
               type="text"
