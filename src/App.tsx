@@ -116,7 +116,7 @@ const App = () => {
               <div key={id} className="flex flex-col" ref={lastMessageRef}>
                 {role === "user" && (
                   <div className="flex justify-end">
-                    <p className="bg-blue-600 w-fit rounded-2xl px-3 py-2">
+                    <p className="bg-blue-600 w-fit rounded-2xl px-3 py-2 whitespace-pre-wrap">
                       {text}
                     </p>
                   </div>
@@ -126,7 +126,7 @@ const App = () => {
                     <div className="border border-zinc-700 h-fit p-1 rounded-full">
                       <Sparkles strokeWidth={1} width={15} height={15} />
                     </div>
-                    <p className="w-fit rounded-2xl">
+                    <p className="w-fit rounded-2xl whitespace-pre-wrap">
                       {index === messages.length - 1 && isTyping
                         ? textEffect
                         : text}
