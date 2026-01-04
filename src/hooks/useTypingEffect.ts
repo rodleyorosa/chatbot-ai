@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useEffectEvent, useState } from "react";
 
 export const useTypingEffect = (
   message: string,
@@ -9,11 +9,17 @@ export const useTypingEffect = (
   const [currentIndex, setCurrentIndex] = useState(0);
   const [lastMessageId, setLastMessageId] = useState(messageId);
 
-  if (messageId !== lastMessageId) {
-    setLastMessageId(messageId);
-    setDisplayedText("");
-    setCurrentIndex(0);
-  }
+  const update = useEffectEvent(() => {
+    if (messageId !== lastMessageId) {
+      setLastMessageId(messageId);
+      setDisplayedText("");
+      setCurrentIndex(0);
+    }
+  });
+
+  useEffect(() => {
+    update();
+  }, []);
 
   useEffect(() => {
     if (!isTyping || currentIndex >= message.length) return;
