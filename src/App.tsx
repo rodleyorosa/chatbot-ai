@@ -91,7 +91,7 @@ const App = () => {
   );
 
   return (
-    <div className="bg-[#0a0a0a] h-screen text-white flex flex-col">
+    <div className="bg-[#0a0a0a] h-dvh text-white flex flex-col">
       <div className="sticky top-0 border border-zinc-700 w-fit rounded-md p-2 m-2 cursor-pointer">
         <ChartNoAxesGantt className="w-4 h-4" />
       </div>
