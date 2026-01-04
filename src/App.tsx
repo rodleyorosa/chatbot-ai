@@ -18,16 +18,11 @@ const App = () => {
   const [isTyping, setIsTyping] = useState(false);
   const textEffect = useTypingEffect(
     typingBotMsg,
-    typingBotMsgId,
+    10,
     isTyping,
-    10
+    typingBotMsgId
   );
-  const subtitle = useTypingEffect(
-    "How can I help you today?",
-    Date.now(),
-    true,
-    50
-  );
+  const subtitle = useTypingEffect("How can I help you today?", 50, true);
 
   const fetchData = useCallback(async () => {
     if (!userMessage) return;

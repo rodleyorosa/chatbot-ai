@@ -1,26 +1,20 @@
-import { useEffect, useEffectEvent, useState } from "react";
+import { useEffect, useState } from "react";
 
 export const useTypingEffect = (
   message: string,
-  messageId: number,
+  speed: number,
   isTyping: boolean,
-  speed: number
+  messageId?: number
 ): string => {
   const [displayedText, setDisplayedText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [lastMessageId, setLastMessageId] = useState(messageId);
 
-  const update = useEffectEvent(() => {
-    if (messageId !== lastMessageId) {
-      setLastMessageId(messageId);
-      setDisplayedText("");
-      setCurrentIndex(0);
-    }
-  });
-
-  useEffect(() => {
-    update();
-  }, []);
+  if (messageId !== lastMessageId) {
+    setLastMessageId(messageId);
+    setDisplayedText("");
+    setCurrentIndex(0);
+  }
 
   useEffect(() => {
     if (!isTyping || currentIndex >= message.length) return;
@@ -31,7 +25,7 @@ export const useTypingEffect = (
     }, speed);
 
     return () => clearTimeout(timeout);
-  }, [currentIndex, message, isTyping]);
+  }, [currentIndex, message, isTyping, speed]);
 
   return displayedText;
 };
