@@ -3,8 +3,9 @@ import { useEffect, useEffectEvent, useState } from "react";
 export const useTypingEffect = (
   message: string,
   messageId: number,
-  isTyping: boolean
-): { displayedText: string } => {
+  isTyping: boolean,
+  speed: number
+): string => {
   const [displayedText, setDisplayedText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [lastMessageId, setLastMessageId] = useState(messageId);
@@ -27,10 +28,10 @@ export const useTypingEffect = (
     const timeout = setTimeout(() => {
       setDisplayedText((prev) => prev + message[currentIndex]);
       setCurrentIndex((prev) => prev + 1);
-    }, 10);
+    }, speed);
 
     return () => clearTimeout(timeout);
   }, [currentIndex, message, isTyping]);
 
-  return { displayedText };
+  return displayedText;
 };

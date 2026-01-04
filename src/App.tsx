@@ -16,10 +16,17 @@ const App = () => {
   const [typingBotMsg, setTypingBotMsg] = useState("");
   const [typingBotMsgId, setTypingBotMsgId] = useState(0);
   const [isTyping, setIsTyping] = useState(false);
-  const { displayedText } = useTypingEffect(
+  const textEffect = useTypingEffect(
     typingBotMsg,
     typingBotMsgId,
-    isTyping
+    isTyping,
+    10
+  );
+  const subtitle = useTypingEffect(
+    "How can I help you today?",
+    Date.now(),
+    true,
+    50
   );
 
   const fetchData = useCallback(async () => {
@@ -99,9 +106,7 @@ const App = () => {
         {messages.length === 0 ? (
           <div className={`w-full ${isMobile() ? "mt-10" : "mt-30 px-20"}`}>
             <h1 className="font-semibold text-xl md:text-2xl">Hello there!</h1>
-            <p className="text-xl text-zinc-500 md:text-2xl">
-              How can I help you today?
-            </p>
+            <p className="text-xl text-zinc-500 md:text-2xl">{subtitle}</p>
           </div>
         ) : (
           <div className="flex flex-col w-full gap-4 h-full overflow-y-auto scrollbar-hide py-4">
@@ -121,7 +126,7 @@ const App = () => {
                     </div>
                     <p className="w-fit rounded-2xl">
                       {index === messages.length - 1 && isTyping
-                        ? displayedText
+                        ? textEffect
                         : text}
                     </p>
                   </div>
