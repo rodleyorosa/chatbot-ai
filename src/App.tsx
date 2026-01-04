@@ -92,7 +92,7 @@ const App = () => {
 
   return (
     <div className="bg-[#0a0a0a] h-dvh text-white flex flex-col">
-      <div className="sticky top-0 border border-zinc-700 w-fit rounded-md p-2 m-2 cursor-pointer">
+      <div className="border border-zinc-700 w-fit rounded-md p-2 m-2 cursor-pointer">
         <ChartNoAxesGantt className="w-4 h-4" />
       </div>
       <div className="flex flex-col justify-between items-center h-full py-4 w-full max-w-3xl mx-auto p-4">
@@ -130,7 +130,7 @@ const App = () => {
             ))}
           </div>
         )}
-        <div className="sticky bottom-0 w-full">
+        <div className="w-full">
           <div className="relative inline-block w-full">
             <input
               type="text"
