@@ -25,12 +25,6 @@ const App = () => {
   const subtitle = useTypingEffect("How can I help you today?", 50, true);
   const lastMessageRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (lastMessageRef.current) {
-      lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [messages, textEffect]);
-
   const fetchData = useCallback(async () => {
     if (!userMessage) return;
 
